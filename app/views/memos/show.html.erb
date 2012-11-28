@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @memo.title %>
+</p>
+
+<p>
+  <b>Note:</b>
+  <%= @memo.note %>
+</p>
+
+<%= form_for([@memo, @document], :html => {:enctype => 'multipart/form-data'}) do |f| %>
+	<%= f.file_field :upload_data %>
+	<%= f.submit %>
+<% end %>
+
+<ul>
+<% @memo.documents.each do |document| %>
+  <li><%= document.path %></li>
+<% end %>
+</ul>
+
+<%= link_to 'Edit', edit_memo_path(@memo) %> |
+<%= link_to 'Back', memos_path %>

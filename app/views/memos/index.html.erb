@@ -1,0 +1,27 @@
+<table class="table table-striped table-hover">
+	
+<tr>
+	<thead>
+		<th>title</th>
+		<th>note</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</thead>
+</tr>
+
+<tbody>
+<% @memos.each do |memo| %>
+<tr>
+	<td><%= memo.title %></td>
+  	<td><%= memo.note %></td>
+  	<td><%= link_to 'Show', memo %></td>
+  	<td><%= link_to 'Edit', edit_memo_path(memo) %></td>
+  	<td><%= link_to 'Destroy', memo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
+<% end %>
+</tbody>
+
+</table>
+
+<%= link_to 'New Memo', new_memo_path %>

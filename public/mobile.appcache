@@ -1,0 +1,15 @@
+CACHE MANIFEST
+# 2012-11-20:v0.3
+
+CACHE:
+memos/new
+# Development
+assets/application.css?body=1
+assets/jquery.mobile-1.2.0.min.css?body=1
+assets/jquery.js?body=1
+assets/jquery_ujs.js?body=1
+assets/jquery.mobile-1.2.0.min.js?body=1
+assets/application.js?body=1
+# Production
+assets/application.css
+assets/application.js
