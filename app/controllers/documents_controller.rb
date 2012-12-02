@@ -5,14 +5,13 @@ class DocumentsController < ApplicationController
   # POST /memos/1/documents.json
   def create
     @document = Document.new(params[:document]) do |document|
-      document.upload_data = params[:file] if params[:file]
       document.memo_id = params[:memo_id]
     end
 
     respond_to do |format|
       if @document.save
         format.html { redirect_to memo_url(@memo), notice: 'Memo was successfully created.' }
-        format.json { render json: @document, status: :created, location: @document }
+        format.json { render json: @document, status: :created }
       else
         format.html { render memo_url(@memo) }
         format.json { render json: @document.errors, status: :unprocessable_entity }
