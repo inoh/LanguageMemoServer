@@ -5,6 +5,7 @@ class DocumentsController < ApplicationController
   # POST /memos/1/documents.json
   def create
     @document = Document.new(params[:document]) do |document|
+      document.upload_data = params[:file] if params[:file]
       document.memo_id = params[:memo_id]
     end
 
