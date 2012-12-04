@@ -19,6 +19,12 @@ class DocumentsController < ApplicationController
     end
   end
 
+  def show
+    @document = Document.find(params[:id])
+    
+    send_file(@document.full_path, :disposition => "inline", :type => "image/png")
+  end
+
   private
     def find_memo
       @memo = Memo.find(params[:memo_id])

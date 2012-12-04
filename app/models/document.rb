@@ -6,6 +6,10 @@ class Document < ActiveRecord::Base
   
   before_save :save_upload_data
   
+  def full_path
+    File.join(Rails.root, "files", self.path)
+  end
+  
   private
     def save_upload_data
       File.open(original_filename, "wb"){|f| f.write self.upload_data.read}

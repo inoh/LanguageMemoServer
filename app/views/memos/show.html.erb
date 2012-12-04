@@ -17,7 +17,7 @@
 
 <ul>
 <% @memo.documents.each do |document| %>
-  <li><%= document.path %></li>
+  <li><%= image_tag(url_for([@memo, document]), :size => '100x100') %></li>
 <% end %>
 </ul>
 

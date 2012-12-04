@@ -26,6 +26,7 @@ class MemosController < ApplicationController
   # GET /memos/new.json
   def new
     @memo = Memo.new
+    @document = Document.new
 
     respond_to do |format|
       format.html # new.html.erb
