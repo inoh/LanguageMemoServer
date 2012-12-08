@@ -11,6 +11,19 @@
 </head>
 <body>
 <div class="container">
+	
+	<div class="row">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<ul class="nav">
+					<%= yield :navi %>
+				</ul>
+			</div>
+		</div>
+		<h4>Language Memo</h4>
+		<hr />
+	</div>
+	
 	<div class="row">
 		<div class="span12">
 	    	<%= yield %>
