@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121127132942) do
+ActiveRecord::Schema.define(:version => 20121207232002) do
 
   create_table "documents", :force => true do |t|
     t.integer  "memo_id"
-    t.string   "path"
+    t.string   "filename"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -23,6 +23,19 @@ ActiveRecord::Schema.define(:version => 20121127132942) do
   create_table "memos", :force => true do |t|
     t.string   "title"
     t.string   "note"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tag_relations", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "memo_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

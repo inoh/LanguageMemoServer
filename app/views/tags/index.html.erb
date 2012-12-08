@@ -1,0 +1,19 @@
+<style>
+.tagbox {
+	border: 1px solid #ccc;
+	padding: 1em;
+	margin-bottom: 5px;
+}
+</style>
+
+<div class="row">
+<% @tags.each do |tag| %>
+	<%= link_to tag_path(tag) do %>
+		<div class="span5 tagbox">
+		<%= tag.name %>
+		</div>
+	<% end %>
+<% end %>
+</div>
+
+<%= link_to 'New Tag', new_tag_path %>
