@@ -1,14 +1,21 @@
+<%= render 'navi' %>
+
+<ul class="breadcrumb">
+	<li><%= link_to "一覧", memos_path %><span class="divider">/</span></li>
+	<li class="active">照会<span class="divider">/</span></li>
+	<li><%= link_to "修正", edit_memo_path(@memo) %></li>
+</ul>
+
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @memo.title %>
-</p>
+<fieldset>
+  <legend><%= @memo.title %></legend>
 
-<p>
-  <b>Note:</b>
-  <%= @memo.note %>
-</p>
+<pre>
+<%= @memo.note %>
+</pre>
+
+</fieldset>
 
 <%= form_for([@memo, @document], :html => {:enctype => 'multipart/form-data'}) do |f| %>
 	<%= f.file_field :upload_data %>
