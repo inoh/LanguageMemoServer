@@ -2,11 +2,17 @@
 .tagbox {
 	border: 1px solid #ccc;
 	padding: 1em;
-	margin-bottom: 5px;
+	margin-top: 10px;
 }
 </style>
 
 <%= render 'navi' %>
+
+<ul class="breadcrumb">
+	<li class="active">一覧</li>
+</ul>
+
+<%= link_to '新規登録', new_tag_path, :class => 'btn' %>
 
 <div class="row">
 <% @tags.each do |tag| %>
@@ -17,5 +23,3 @@
 	<% end %>
 <% end %>
 </div>
-
-<%= link_to 'New Tag', new_tag_path %>
