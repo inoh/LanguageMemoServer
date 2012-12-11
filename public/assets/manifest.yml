@@ -2,5 +2,9 @@
 rails.png: rails.png
 application.js: application.js
 application.css: application.css
+images/asc.gif: images/asc.gif
+images/asc_light.gif: images/asc_light.gif
+images/desc.gif: images/desc.gif
+images/desc_light.gif: images/desc_light.gif
 images/glyphicons-halflings-white.png: images/glyphicons-halflings-white.png
 images/glyphicons-halflings.png: images/glyphicons-halflings.png

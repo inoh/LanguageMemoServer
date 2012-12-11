@@ -4,9 +4,7 @@ class DocumentsController < ApplicationController
   # POST /memos/1/documents
   # POST /memos/1/documents.json
   def create
-    @document = Document.new(params[:document]) do |document|
-      document.memo_id = params[:memo_id]
-    end
+    @document = @memo.new_document(params[:document])
 
     respond_to do |format|
       if @document.save

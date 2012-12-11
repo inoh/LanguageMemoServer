@@ -2,9 +2,7 @@ class TagRelationsController < ApplicationController
   before_filter :find_tag
   
   def create
-    @tag_relation = TagRelation.new(params[:tag_relation]) do |tag_relation|
-      tag_relation.tag_id = @tag.id
-    end
+    @tag_relation = @tag.new_relation(params[:tag_relation])
 
     respond_to do |format|
       if @tag_relation.save

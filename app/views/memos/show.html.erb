@@ -22,8 +22,10 @@
 	<%= f.submit %>
 <% end %>
 
-<ul>
-<% @memo.documents.each do |document| %>
-  <li><%= image_tag(url_for([@memo, document]), :size => '100x100') %></li>
-<% end %>
+<ul class="thumbnails">
+	<% @memo.documents.each do |document| %>
+		<li class="span3">
+			<a href="#" class="thumbnail"><%= image_tag(url_for([@memo, document]), 'data-src' => 'holder.js/300x200') %></a>
+		</li>
+	<% end %>
 </ul>
