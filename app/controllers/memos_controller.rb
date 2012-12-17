@@ -25,7 +25,11 @@ class MemosController < ApplicationController
   # GET /memos/new
   # GET /memos/new.json
   def new
-    @memo = Memo.new
+    @memo = Memo.new do |memo|
+      memo.tag_relations << TagRelation.new
+      memo.tag_relations << TagRelation.new
+      memo.tag_relations << TagRelation.new
+    end
     @document = Document.new
 
     respond_to do |format|

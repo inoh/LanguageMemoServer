@@ -24,6 +24,18 @@
 	</div>
   </div>
   <div class="control-group">
+  	<%= f.label :tags, :class => 'control-label' %>
+    <div class="controls">
+      <% @memo.tag_relations.each do |tag_relation| %>
+        <%= f.fields_for "tag_relations_attributes[]", tag_relation do |ft| %>
+          <%= ft.hidden_field :id %>
+          <%= ft.hidden_field :memo_id %>
+          <%= ft.select :tag_id, tag_collection, {:include_blank => true}, {:class => 'input-xxlarge'} %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class="control-group">
     <%= f.submit :class => 'btn-primary' %>
   </div>
 <% end %>

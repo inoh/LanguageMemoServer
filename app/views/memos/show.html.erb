@@ -11,6 +11,12 @@
 <fieldset>
   <legend><%= @memo.title %></legend>
 
+<ul class="nav nav-pills">
+	<% @memo.tags.each do |tag| %>
+		<li><%= link_to tag.name, tag_path(tag) %></li>
+	<% end %>
+</ul>
+
 <pre>
 <%= @memo.note %>
 </pre>
