@@ -6,5 +6,5 @@ LanguageMemo::Application.routes.draw do
     resources :tag_relations, :only => [:create]
   end
 
-  root :to => 'welcome#index'
+  root :to => 'memos#index'
 end

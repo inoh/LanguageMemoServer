@@ -12,6 +12,6 @@ class Tag < ActiveRecord::Base
   def memos
     tag_relations.inject([]) do |ret, tag_relation|
       ret << tag_relation.memo
-    end
+    end.compact
   end
 end
