@@ -24,7 +24,7 @@
 </fieldset>
 
 <%= form_for([@memo, @document], :html => {:enctype => 'multipart/form-data'}) do |f| %>
-	<%= f.file_field :upload_data %>
+	<%= f.file_field :upload_data, :accept => "image/*;capture=camera" %>
 	<%= f.submit %>
 <% end %>
 
