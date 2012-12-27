@@ -1,6 +1,7 @@
 <%= render 'navi' %>
 
 <ul class="breadcrumb">
+	<li><%= link_to "新規", new_memo_path %><span class="divider">/</span></li>
 	<li><%= link_to "一覧", memos_path %><span class="divider">/</span></li>
 	<li><%= link_to "照会", memo_path(@memo) %><span class="divider">/</span></li>
 	<li class="active">修正</li>

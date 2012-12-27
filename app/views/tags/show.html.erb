@@ -20,7 +20,7 @@
 <tbody>
 <% @tag.memos.each do |memo| %>
 <tr>
-	<td><%= memo.title %></td>
+	<td><%= link_to memo.title, memo_path(memo) %></td>
 </tr>
 <% end %>
 </tbody>
