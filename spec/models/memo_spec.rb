@@ -24,6 +24,16 @@ describe Memo do
 
   end
 
+  describe "メモの単純更新" do
+
+    it "新規登録" do
+      lambda {
+        Memo.create!(title: "dog", note: "犬")
+      }.should change(Memo, :count).by(1)
+    end
+
+  end
+
   describe "タグの同時登録" do
 
     before(:each) do
