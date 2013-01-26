@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Document < ActiveRecord::Base
   DOCUMENT_DIRECTORY = File.join(Rails.root, "files")
   

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Memo < ActiveRecord::Base
   has_many :documents
   has_many :tag_relations, :dependent => :destroy

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class TagRelation < ActiveRecord::Base
   belongs_to :memo
   belongs_to :tag
