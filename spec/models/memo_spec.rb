@@ -66,9 +66,8 @@ describe Memo do
     it "タグが削除されること" do
       lambda { 
         @memo.update_attributes!(tag_relations_attributes: { 
-                                 tag_1: { id: @memo.tag_relations.first.id, tag_id: tags(:english).id, _destroy: "1"},
-                                 tag_2: { id: nil, tag_id: tags(:other).id} })
-      }.should change(TagRelation, :count).by(0)
+                                   tag_1: { id: @memo.tag_relations.first.id, tag_id: tags(:english).id, _destroy: "1"}})
+      }.should change(TagRelation, :count).by(-1)
     end
 
   end
