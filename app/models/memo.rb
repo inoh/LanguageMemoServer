@@ -3,7 +3,7 @@ class Memo < ActiveRecord::Base
   has_many :documents
   has_many :tag_relations, :dependent => :destroy
   
-  accepts_nested_attributes_for :tag_relations
+  accepts_nested_attributes_for :tag_relations, :allow_destroy => true
   attr_accessible :title, :note, :tag_relations_attributes
   
   after_save :delete_blank_relations
