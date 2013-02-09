@@ -8,7 +8,6 @@ describe Tag do
 
     before(:all) do
       @tag = Tag.new
-      #Tag.new(name: "test").save!
     end
 
     it "バリデーションが失敗すること" do
@@ -24,16 +23,36 @@ describe Tag do
   describe "タグの単純更新" do
 
     it "新規登録" do
-      lambda { 
+      lambda {
         Tag.create!(name: "テスト")
       }.should change(Tag, :count).by(1)
+    end
+
+    it "メモ更新" do
+      tag = Tag.find(tags(:english).id)
+      tag.update_attributes(name: "更新後")
+      Tag.find(tag.id).name.should == "更新後"
     end
 
   end
 
   describe "メモの一覧を取得する" do
 
-    it ""
+    before(:each) do
+      @tag = Tag.create!(name: "test")
+    end
+
+    it "memosがあるかどうか" do
+      Tag.instance_methods.include?(:memos).should == true
+    end
+
+    it "関連が無い場合" do
+      Tag.find(@tag.id).memos.count == 0
+    end
+
+    it "関連がある場合" do
+      tags(:english).memos.count == 1
+    end
 
   end
 

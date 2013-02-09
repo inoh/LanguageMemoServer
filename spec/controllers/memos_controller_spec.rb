@@ -64,9 +64,7 @@ describe MemosController do
       end
 
       it "空のメモが作成されていること" do
-        pending("オブジェクトの中身の比較方法がわからない") do
-          assigns[:memo].should == Memo.new
-        end
+        assigns[:memo].should be_instance_of(Memo)
       end
 
       it "memos/newを描画すること" do
