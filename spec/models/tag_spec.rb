@@ -2,12 +2,13 @@
 require 'spec_helper'
 
 describe Tag do
-  fixtures :tags
+  fixtures :tags, :memos, :tag_relations
 
   describe "未入力の確認" do
 
     before(:all) do
       @tag = Tag.new
+      #Tag.new(name: "test").save!
     end
 
     it "バリデーションが失敗すること" do
@@ -17,6 +18,22 @@ describe Tag do
     it "名称が入力されていること" do
       @tag.should have(1).errors_on(:name)
     end
+
+  end
+
+  describe "タグの単純更新" do
+
+    it "新規登録" do
+      lambda { 
+        Tag.create!(name: "テスト")
+      }.should change(Tag, :count).by(1)
+    end
+
+  end
+
+  describe "メモの一覧を取得する" do
+
+    it ""
 
   end
 

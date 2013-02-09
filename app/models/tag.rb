@@ -13,6 +13,7 @@ class Tag < ActiveRecord::Base
   end
   
   def memos
-    tag_relations.inject([]){|ret, tag_relation| ret << tag_relation.memo }.compact
+    #tag_relations.inject([]){|ret, tag_relation| ret << tag_relation.memo }.compact
+    tag_relations.map{|tag_relation| tag_relation.memo}.cmpact
   end
 end

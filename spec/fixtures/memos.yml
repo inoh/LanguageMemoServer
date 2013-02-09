@@ -3,3 +3,7 @@ english:
   id: 1
   title: cat
   note: 猫
+english2:
+  id: 2
+  title: ant
+  note: 蟻

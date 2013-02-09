@@ -44,4 +44,5 @@ gem 'jquery-rails'
 group :development, :test do
   gem "rspec", "2.12.0"
   gem "rspec-rails", "2.12.0"
+  # gem "simplecov", :require => false
 end
