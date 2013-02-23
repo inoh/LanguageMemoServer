@@ -1,4 +1,5 @@
 LanguageMemo::Application.routes.draw do
+  # resouce
   resources :memos do
     resources :documents, :only => [:index, :show, :create]
   end
@@ -6,5 +7,8 @@ LanguageMemo::Application.routes.draw do
     resources :tag_relations, :only => [:create]
   end
 
-  root :to => 'memos#index'
+  get 'login' => 'accounts#login'
+  post 'login' => 'accounts#authenticate'
+
+  root :to => 'accounts#login'
 end

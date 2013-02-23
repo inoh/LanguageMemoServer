@@ -1,0 +1,12 @@
+<%= form_for(@account, :url => {:action => 'login'}) do |f| %>
+  <fieldset>
+    <legend>Login</legend>
+    <%= f.label :username %>
+    <%= f.text_field :username %>
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <div>
+      <%= f.submit 'login', :class => 'btn' %>
+    </div>
+  <fieldset>
+<% end %>
