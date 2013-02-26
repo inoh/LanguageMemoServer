@@ -15,7 +15,7 @@ class Account < Base
   # TODO リファクタリング必要
   def authenticate
     if valid?
-      account_session_token || new_session_token
+      exist_session_token || new_session_token
     end
   end
 
@@ -34,7 +34,7 @@ class Account < Base
     end
 
     # ログイン済みのセッショントークン
-    def account_session_token
+    def exist_session_token
       account_session = AccountSession.where(session_token: session_token).first
       if account_session
         account_session.session_token
