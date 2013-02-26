@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-
 require 'spec_helper'
 
 describe Account do
+  fixtures :account_sessions
 
   describe "未入力の確認" do
     before do
@@ -22,7 +22,7 @@ describe Account do
     end
 
     it "認証失敗" do
-      @account.authenticate.should == false
+      @account.authenticate.should == nil
     end
   end
 
@@ -36,7 +36,47 @@ describe Account do
     end
 
     it "認証成功" do
-      @account.authenticate.should == true
+      @account.authenticate.should_not == nil
+    end
+
+    it "セッション作成" do
+      lambda { 
+        @account.authenticate
+      }.should change(AccountSession, :count).by(0)
+    end
+
+    it "パスワード誤り" do
+      account = Account.new(username: 'inoue', password: 'NG')
+      account.authenticate.should == nil
+    end
+  end
+
+  describe "再ログイン" do
+    before do
+      @account = Account.new(username: 'inoue', password: 'inoue')
+      @account.authenticate
+    end
+
+    it "認証成功" do
+      lambda { 
+        account = Account.new(session_token: account_sessions(:success))
+        account.authenticate.should == @account.session_token
+      }.should change(AccountSession, :count).by(0)
+    end
+
+    it "認証失敗" do
+      lambda { 
+        account = Account.new(session_token: "error")
+        account.authenticate.should == nil
+      }.should change(AccountSession, :count).by(0)
+    end
+
+    it "再認証" do
+      lambda { 
+        account = Account.new(username: 'inoue', password: 'inoue')
+        account.authenticate
+        account.session_token.should == @account.session_token
+      }.should change(AccountSession, :count).by(0)
     end
   end
 end
