@@ -12,10 +12,28 @@ class Account < Base
 
   # バリデーションがすべて成功した場合、ユーザの認証を行います。
   # _return_ :: 認証結果。sessionToken、成功。nil、失敗。
-  # TODO リファクタリング必要
   def authenticate
     if valid?
-      exist_session_token || new_session_token
+      account_session = AccountSession.where(session_token: session_token).first
+      if account_session
+        account_session.session_token
+      end
+    end
+  end
+
+  # ログイン認証
+  # _return_ :: 認証結果。sessionToken、成功。nil、失敗。
+  def login
+    if valid? && parse_user
+      account_session = AccountSession.find_by_session_token(parse_user[Parse::Protocol::KEY_USER_SESSION_TOKEN])
+      unless account_session
+        account_session = AccountSession.new do |account_session|
+          account_session.parse_object_id = parse_user[Parse::Protocol::KEY_OBJECT_ID]
+          account_session.session_token = parse_user[Parse::Protocol::KEY_USER_SESSION_TOKEN]
+        end
+        account_session.save!
+      end
+      account_session.session_token
     end
   end
 
@@ -31,28 +49,5 @@ class Account < Base
     # session_tokenが入力済みか否か。
     def input_token
       session_token.present?
-    end
-
-    # ログイン済みのセッショントークン
-    def exist_session_token
-      account_session = AccountSession.where(session_token: session_token).first
-      if account_session
-        account_session.session_token
-      elsif parse_user
-        parse_user[Parse::Protocol::KEY_USER_SESSION_TOKEN]
-      end
-    end
-
-    # 新規セッショントークン
-    def new_session_token
-      if parse_user
-        account_session = AccountSession.new do |account_session|
-          account_session.parse_object_id = parse_user[Parse::Protocol::KEY_OBJECT_ID]
-          account_session.session_token = parse_user[Parse::Protocol::KEY_USER_SESSION_TOKEN]
-        end
-        if account_session.save
-          account_session.session_token
-        end
-      end
     end
 end

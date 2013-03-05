@@ -181,6 +181,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 /files/*
+.ruby-version
 
 # Emacs
 *~

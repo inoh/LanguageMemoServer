@@ -36,25 +36,25 @@ describe Account do
     end
 
     it "認証成功" do
-      @account.authenticate.should_not == nil
+      @account.login.should_not == nil
     end
 
     it "セッション作成" do
       lambda { 
-        @account.authenticate
-      }.should change(AccountSession, :count).by(0)
+        @account.login
+      }.should change(AccountSession, :count).by(1)
     end
 
     it "パスワード誤り" do
       account = Account.new(username: 'inoue', password: 'NG')
-      account.authenticate.should == nil
+      account.login.should == nil
     end
   end
 
   describe "再ログイン" do
     before do
       @account = Account.new(username: 'inoue', password: 'inoue')
-      @account.authenticate
+      @account.login
     end
 
     it "認証成功" do

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 class AccountsController < ApplicationController
+  skip_before_filter :checked_account
 
   # GET '/login'
   def login
@@ -16,7 +17,8 @@ class AccountsController < ApplicationController
     @account = Account.new(params[:account])
 
     respond_to do |format|
-      if @account.authenticate
+      if session_token = @account.login
+        session[:session_token] = session_token
         format.html { redirect_to memos_url }
         format.json { render json: @account, status: :created, location: @account }
       else

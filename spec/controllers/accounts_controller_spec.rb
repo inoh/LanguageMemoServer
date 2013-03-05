@@ -27,14 +27,38 @@ describe AccountsController do
 
   end
 
-  describe "ログイン認証" do
+  describe "ログイン認証成功" do
 
     before do
-      post 'authenticate', {username: "inoue", password: "inoue"}
+      post 'authenticate', {:account => {:username => "inoue", :password => "inoue"}}
+    end
+
+    it "セッションが開始されること" do
+      session[:session_token].should_not == nil
+    end
+
+    it "リクエストが成功すること" do
+      response.should redirect_to :memos
+    end
+
+  end
+
+  describe "ログイン認証失敗" do
+
+    before do
+      post 'authenticate', {:account => {:username => "inoue", :password => "inoue2"}}
     end
 
     it "リクエストが成功すること" do
       response.should be_success
+    end
+
+    it "セッションが開始されること" do
+      session[:session_token].should == nil
+    end
+
+    it "memos/indexを描画すること" do
+      response.should render_template("accounts/login")
     end
 
   end
